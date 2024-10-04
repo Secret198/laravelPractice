@@ -14,6 +14,10 @@
     <header>
         <img src="{{asset('logo.png')}}" alt="">
         <ul>
+            <li><a href="{{route('tags.index')}}">Címkék</a></li>
+            <li><a href="{{route('tags.create')}}">Új címke</a></li>
+            <li><a href="{{route('aitools.index')}}">AI eszközök</a></li>
+            <li><a href="{{route('aitools.create')}}"> Új AI eszköz</a></li>
             <li><a href="{{route('categories.index')}}">Kategóriák</a></li>
             <li><a href="{{route('categories.create')}}">Új kategória</a></li>
         </ul>

@@ -43,7 +43,7 @@ class ControllerCategories extends Controller
         $category->name = $request->name;
         $category->save();
 
-        return redirect()->route("categories.index")->with("Success", "Kategória sikeresen létrehozva");
+        return redirect()->route("categories.index")->with("success", "Kategória sikeresen létrehozva");
     }
 
     /**
@@ -51,7 +51,8 @@ class ControllerCategories extends Controller
      */
     public function show(string $id)
     {
-        //
+        $category = Category::find($id);
+        return view('categories.show', compact('category'));
     }
 
     /**
@@ -59,7 +60,8 @@ class ControllerCategories extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = Category::find($id);
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -67,7 +69,15 @@ class ControllerCategories extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate(
+            ['name' => 'required|min:3|max:255'],
+            ['name.min' => 'A kategória neve legalább 3 karakter hosszú legyen.']
+        );
+
+        $category = Category::find($id);
+        $category->name = $request->name;
+        $category->save();
+        return redirect()->route('categories.index')->with('success', 'Kategória sikeresen módosítva.');
     }
 
     /**
@@ -75,6 +85,9 @@ class ControllerCategories extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category = Category::find($id);
+        $category->delete();
+
+        return redirect()->route('categories.index')->with('success', 'Kategória sikeresen törölve');
     }
 }
