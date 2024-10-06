@@ -20,6 +20,17 @@
             <li><a href="{{route('aitools.create')}}"> Új AI eszköz</a></li>
             <li><a href="{{route('categories.index')}}">Kategóriák</a></li>
             <li><a href="{{route('categories.create')}}">Új kategória</a></li>
+
+            @if (auth()->check())
+                <li>
+                    <form action="{{route('logout')}}" method="post">
+                        @csrf
+                        <button type="submit">Logout</button>
+                    </form>
+                </li>
+            @else
+                <li><a href="{{route('login')}}">Login</a></li>
+            @endif
         </ul>
     <header>
     <main>

@@ -12,6 +12,6 @@ class Tag extends Model
     public $timestamps = false;
 
     public function aitool(){
-        return $this->belongsToMany(Aitool::class);
+        return $this->belongsToMany(Aitools::class);
     }
 }

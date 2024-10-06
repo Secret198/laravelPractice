@@ -1,1 +1,1 @@
-Nem működik az eszköz szerkesztés és a címkés felvitel
+Valamiért aitools_id táblát akar kezelni az aitool_id helyett

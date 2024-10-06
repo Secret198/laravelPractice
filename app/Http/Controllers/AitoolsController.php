@@ -15,7 +15,9 @@ class AitoolsController extends Controller
      */
     public function index()
     {
-        $aitools = Aitools::all();
+        $sort_by = request()->query('sort_by', 'name');
+        $sort_dir = request()->query('sort_dir', 'asc');
+        $aitools = Aitools::with('tags')->orderBy($sort_by, $sort_dir)->paginate(5);
         return view("aitools.index", compact("aitools"));
     }
 
@@ -61,8 +63,8 @@ class AitoolsController extends Controller
      */
     public function show(string $id)
     {
-        $aitool = Aitools::find($id);
-        return view('aitools.show', compact('aitool'));
+        $aitools = Aitools::with('tags')->find($id);
+        return view('aitools.show', compact('aitools'));
     }
 
     /**
